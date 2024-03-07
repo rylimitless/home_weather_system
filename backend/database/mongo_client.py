@@ -9,7 +9,11 @@ class Database:
 
     def insert(self,payload):
         # self.db.connection
-        result = self.collection.insert_one(payload)
-        if result.acknowledged:
-            return True
+        try:
+            result = self.collection.insert_one(payload)
+            if result.acknowledged:
+                return True
+        except Exception as e:
+            print(f"Mongo Insert Error {e}")
+            return False
         return False

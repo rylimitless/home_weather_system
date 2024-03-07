@@ -1,6 +1,8 @@
 from flask import Flask, jsonify
 from app.mqtt_client import mqttc
 import app.constants as constants
+import app.functions as functions
+
 
 app = Flask(__name__)
 
@@ -8,7 +10,10 @@ app = Flask(__name__)
 def get():
     return {"success":"Hello World"}
 
-# @app.route("/")
+@app.route("/app/avg/<start>/<end>")
+def get_avg(start,end):
+    start = int(start)
+    end  = int(end)
 
 def start_flask_app():
     app.run(port=5000)

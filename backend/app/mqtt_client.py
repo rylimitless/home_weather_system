@@ -1,10 +1,9 @@
 # import constants
 
 import paho.mqtt.client as mqtt 
-import database.mongo_client as database
 import json
+import functions
 
-db  = database.Database()
 
 def on_subscribe(client, userdata, mid, reason_code_list, properties):
     # Since we subscribed only for a single channel, reason_code_list contains
@@ -30,8 +29,8 @@ def on_message(client, userdata, message):
     payload = str(message.payload)
     if 'temperature' in payload:
         payload = json.loads(str(message.payload.decode("utf-8")))
-        db.insert(payload)
-        print(payload)
+        functions.insert(payload)
+        # print(payload)
 
     # We only want to process 10 messages
     # if len(userdata) >= 10:
