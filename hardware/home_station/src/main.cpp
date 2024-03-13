@@ -14,6 +14,12 @@
 
 // Contructors
 
+#define TFT_DC 17
+#define TFT_CS 5
+#define TFT_RST 16
+#define TFT_CLK 18
+#define TFT_MOSI 23
+#define TFT_MISO 19
 
 const char *ssid = "MonaConnect";
 const char *password = "";
@@ -110,6 +116,7 @@ void loop()
   client.publish("topic1",doc);
   Serial.println("Published");
 
+  Serial.printf("Temperature: %f\n",sensor.avg_temperature);
   delay(2000);
   // put your main code here, to run repeatedly:
 }
