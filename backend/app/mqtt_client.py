@@ -1,8 +1,9 @@
 # import constants
-
 import paho.mqtt.client as mqtt 
 import json
-import functions
+import app.functions
+import pprint
+from datetime import datetime as dt
 
 
 def on_subscribe(client, userdata, mid, reason_code_list, properties):
@@ -29,12 +30,11 @@ def on_message(client, userdata, message):
     payload = str(message.payload)
     if 'temperature' in payload:
         payload = json.loads(str(message.payload.decode("utf-8")))
-        functions.insert(payload)
-        # print(payload)
+        payload['timestamp'] = dt.timestamp(dt.now())
+        pprint.pprint(payload)
+        print("")
+        app.functions.insert(payload)
 
-    # We only want to process 10 messages
-    # if len(userdata) >= 10:
-    #     client.unsubscribe("$SYS/#")
 
 def on_connect(client, userdata, flags, reason_code, properties):
     print('connected')

@@ -1,9 +1,19 @@
+import logging
 from pymongo import MongoClient
+import os
+
+# Get the current date and time
+
+
+import dotenv
+
+dotenv.load_dotenv()
+
 
 class Database:
-
+    MongoURI = os.environ['MONGO_URI']
     def __init__(self):
-        self.client = MongoClient('mongodb://localhost:27017')
+        self.client = MongoClient(self.MongoURI)
         self.db = self.client.dev
         self.collection = self.db.data
 
@@ -17,3 +27,4 @@ class Database:
             print(f"Mongo Insert Error {e}")
             return False
         return False
+    
