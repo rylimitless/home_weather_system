@@ -28,7 +28,7 @@ def on_message(client, userdata, message):
     userdata.append(message.payload)
     # if 'temperature' in message.payload:
     payload = str(message.payload)
-    if 'temperature' in payload:
+    if message.topic == "topic1":
         payload = json.loads(str(message.payload.decode("utf-8")))
         payload['timestamp'] = dt.timestamp(dt.now())
         pprint.pprint(payload)

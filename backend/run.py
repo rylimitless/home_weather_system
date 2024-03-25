@@ -16,7 +16,7 @@ def get_avg(start,end):
     end  = int(end)
 
 def start_flask_app():
-    app.run(port=5000)
+    app.run(port=5000,debug=True)
 
 def start_mqtt_client():
     mqttc.connect('dbs.msjrealtms.com',1883)
