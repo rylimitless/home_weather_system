@@ -41,7 +41,7 @@ export default defineConfig({
         'vue-router',
       ],
       eslintrc: {
-        enabled: true,
+        enabled: false,
       },
       vueTemplate: true,
     }),
@@ -63,5 +63,13 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    host:true, 
+    proxy: {
+      '^/api*': { 
+        target: 'http://172.16.194.4:5000',
+       changeOrigin: false,
+    },   
+  }
   },
+  base:"/"
 })
