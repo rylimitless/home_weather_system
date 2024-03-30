@@ -37,7 +37,7 @@ const char *ssid = "MonaConnect";
 const char *password = "";
 
 //MQTT client
-const char *broker = "dbs.msjrealtms.com";
+const char *broker = "broker.emqx.io";
 const int port = 1883;
 
 Adafruit_BMP280 bmp; // I2C
@@ -50,7 +50,6 @@ bool checkDHT(float t, float h);
 String toJson(float  , float , float , float , float);
 float to2dp(float);
 void init_connections();
-float get_time_stamp();
 void print_to_tft();
 void draw_dashboard(float temperature, float soil, float humidity, float heatIndex, float pressure, float altitude);
 // String toDocument(float t, float h, float p, float a, int soil);
@@ -81,8 +80,6 @@ void setup()
   delay(1000);
   tft.fillScreen(ILI9341_BLACK);
   init_connections();
-  configTime(gmtOffset_sec, daylightOffset_sec, ntp_server);
-  get_time_stamp();
   tft.fillScreen(ILI9341_BLACK);
   // tft.drawRect(0, 0, tft.width(), tft.height(), ILI9341_WHITE);
 }

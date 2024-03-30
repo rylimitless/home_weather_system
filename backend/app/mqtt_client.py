@@ -24,16 +24,19 @@ def on_unsubscribe(client, userdata, mid, reason_code_list, properties):
     client.disconnect()
 
 def on_message(client, userdata, message):
+    try:
     # userdata is the structure we choose to provide, here it's a list()
-    userdata.append(message.payload)
-    # if 'temperature' in message.payload:
-    payload = str(message.payload)
-    if message.topic == "topic1":
-        payload = json.loads(str(message.payload.decode("utf-8")))
-        payload['timestamp'] = dt.timestamp(dt.now())
-        pprint.pprint(payload)
-        print("")
-        app.functions.insert(payload)
+        userdata.append(message.payload)
+        # if 'temperature' in message.payload:
+        payload = str(message.payload)
+        if message.topic == "topic1":
+            payload = json.loads(str(message.payload.decode("utf-8")))
+            payload['timestamp'] = dt.timestamp(dt.now())
+            pprint.pprint(payload)
+            print("")
+            app.functions.insert(payload)
+    except Exception as e:
+        print(f"Error: {e}")
 
 
 def on_connect(client, userdata, flags, reason_code, properties):
