@@ -1,4 +1,4 @@
-# home_weather_system
+# home_iot_system
 
 Home Weather Station: Know Your Backyard's Breeze
 This home weather system keeps you informed about your microclimate, right from your living room. It combines three key parts:
